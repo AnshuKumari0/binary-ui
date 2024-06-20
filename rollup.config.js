@@ -14,5 +14,5 @@ export default {
     },
   ],
   plugins: [typescript()],
-  external: ["react", "react-dom", /@mui\//],
+  external: ["react", "react-dom", /@mui\//, 'react/jsx-runtime'],
 };

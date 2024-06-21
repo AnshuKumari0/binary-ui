@@ -1,25 +1,21 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
-import CircularProgress from "@mui/material/CircularProgress";
+import { CircularProgress, LinearProgress, Box } from "@mui/material";
 import { styled } from "@mui/system";
 
 interface LoaderProps {
   size?: number;
   thickness?: number;
-  color?: string;
+  color?: "primary" | "secondary" | "inherit";
   variant?: "circular" | "linear";
 }
 
-const CustomLinearProgress = styled(LinearProgress, {
-  shouldForwardProp: (prop) => prop !== "customColor",
-})<{ customColor?: string }>(({ customColor, theme }) => ({
+const CustomLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   backgroundColor: theme.palette.grey[300],
   "& .MuiLinearProgress-bar": {
     borderRadius: 5,
-    backgroundColor: customColor || theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
   },
 }));
 
@@ -38,10 +34,10 @@ const Loader: React.FC<LoaderProps> = ({
       height="100%"
     >
       {variant === "circular" ? (
-        <CircularProgress size={size} thickness={thickness} style={{ color }} />
+        <CircularProgress size={size} thickness={thickness} color={color} />
       ) : (
         <Box width="100%">
-          <CustomLinearProgress customColor={color} />
+          <CustomLinearProgress color={color} />
         </Box>
       )}
     </Box>

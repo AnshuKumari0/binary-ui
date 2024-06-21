@@ -1,6 +1,6 @@
 {
   "name": "binary-ui",
-  "version": "0.1.8",
+  "version": "0.1.11",
   "types": "dist/types/index.d.ts",
   "description": "\"Making custon component binary-ui\"",
   "main": "dist/bundle.js",

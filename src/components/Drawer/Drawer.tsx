@@ -13,12 +13,14 @@ const UnifiedDrawer: React.FC<UnifiedDrawerProps> = ({
   children3,
   onSubmit,
   onCancel,
-  drawerProps,
   width = { lg: 720, md: 720, sm: 720, xs: "100%", xl: 1000 },
   height,
   headerContent,
   footerContent,
   backgroundColor,
+  open,
+  onClose,
+  anchor = "left",
   ...other
 }) => {
   const theme = useTheme() as Theme;
@@ -134,6 +136,38 @@ const UnifiedDrawer: React.FC<UnifiedDrawerProps> = ({
               </Box>
             )}
             <Box sx={{ padding: 2 }}>{children}</Box>
+            <Grid
+              item
+              lg={12}
+              xs={12}
+              sx={{
+                marginTop: 2,
+                marginBottom: 2,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                variant="outlined"
+                sx={{ width: 240, margin: 0.8 }}
+                onClick={onCancel}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  width: 240,
+                  margin: 0.8,
+                  background: theme.palette.primary.dark,
+                  color: theme.palette.primary.light,
+                }}
+                onClick={onSubmit}
+              >
+                Submit
+              </Button>
+            </Grid>
             {footerContent && (
               <Box
                 sx={{
@@ -150,7 +184,7 @@ const UnifiedDrawer: React.FC<UnifiedDrawerProps> = ({
   };
 
   return (
-    <Drawer {...drawerProps} {...other}>
+    <Drawer {...other} open={open} onClose={onClose} anchor={anchor}>
       {renderContent()}
     </Drawer>
   );
